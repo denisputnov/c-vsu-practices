@@ -1,1 +1,0 @@
-### gcc solution.c -o second && ./second

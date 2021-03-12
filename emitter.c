@@ -14,12 +14,16 @@
 
 int main(int argc, char *argv[])
 {
+  // если аргументов ровно 3
   if (argc == 3)
   {
+    // проверка на поданный сигнал. Если сигнал SIGUSR1 или SIGUSR2, то выполняем отправку
     if ((strcmp(argv[2], "SIGUSR1") == 0) || (strcmp(argv[2], "SIGUSR2") == 0))
     {
+      // получаем pid из аргументов
       int pid = atoi(argv[1]);
       int sig;
+      // определяем код сигнала, int
       if ((strcmp(argv[2], "SIGUSR1") == 0))
       {
         sig = 10;
@@ -28,18 +32,22 @@ int main(int argc, char *argv[])
       {
         sig = 12;
       }
+      // отправляем сигнал
       kill(pid, sig);
       printf("Signal sended.\n");
     }
+    // иначе не отправляем ничего, просто ошибка
     else
     {
       printf("Argumets error.\n");
     }
   }
+  // если аргументов больше 3
   else if (argc > 3)
   {
     printf("Too many arguments supplied.\n");
   }
+  // если аргументов меньше 3
   else
   {
     printf("Argumets error.\n");
